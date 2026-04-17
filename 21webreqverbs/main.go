@@ -10,7 +10,8 @@ import (
 
 func main() {
 	fmt.Println("WebServers")
-	PerformGetRequest()
+	//	PerformGetRequest()
+	PerformPostJsonRequest()
 }
 func PerformGetRequest() {
 	const myurl = "http://localhost:8000/get"
@@ -31,5 +32,30 @@ func PerformGetRequest() {
 	byteCount, _ := responseString.Write(content)
 	fmt.Println("Byte count is :", byteCount)
 	fmt.Println(responseString.String())
+
+}
+func PerformPostJsonRequest() {
+	const myurl = "http://localhost:8000/post"
+
+	// fake JSON payload
+	requestBody := strings.NewReader(`
+	{
+        "coursename":"Lets go with Golang",
+        "price":0,
+		"platform":"youtube"
+
+	}
+`)
+
+	response, err := http.Post(myurl, "application/json", requestBody)
+	if err != nil {
+		panic(err)
+	}
+	defer response.Body.Close()
+	content, err := io.ReadAll(response.Body)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(content))
 
 }
