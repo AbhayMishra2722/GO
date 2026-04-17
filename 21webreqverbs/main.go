@@ -6,12 +6,14 @@ import (
 	"strings"
 
 	"net/http"
+	"net/url"
 )
 
 func main() {
 	fmt.Println("WebServers")
 	//	PerformGetRequest()
-	PerformPostJsonRequest()
+	// PerformPostJsonRequest()
+	performPostformRequest()
 }
 func PerformGetRequest() {
 	const myurl = "http://localhost:8000/get"
@@ -56,6 +58,24 @@ func PerformPostJsonRequest() {
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println(string(content))
+
+}
+func performPostformRequest() {
+	const myurl = "http://localhost:8000/postform"
+
+	//formdata
+	data := url.Values{}
+	data.Add("firstname", "abhay")
+	data.Add("lastname", "mishra")
+	data.Add("course", "golang")
+
+	response, err := http.PostForm(myurl, data)
+	if err != nil {
+		panic(err)
+	}
+	defer response.Body.Close()
+	content, _ := io.ReadAll(response.Body)
 	fmt.Println(string(content))
 
 }
