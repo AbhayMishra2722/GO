@@ -1,0 +1,77 @@
+# 🚀 Go Course API
+
+A lightweight RESTful API built with **Go** for managing courses.
+Implements full **CRUD operations** using an in-memory data store and HTTP JSON responses.
+
+---
+
+## 🛠️ Tech Stack
+
+* Go (Golang)
+* Gorilla Mux
+* REST / JSON
+
+---
+
+## ⚙️ Getting Started
+
+```bash
+git clone https://github.com/AbhayMishra2722/GO.git
+cd GO/24buildAPI
+go mod tidy
+go run main.go
+```
+
+Server runs on: **http://localhost:4000**
+
+---
+
+## 📡 API Endpoints
+
+| Method | Endpoint       | Description         |
+| ------ | -------------- | ------------------- |
+| GET    | `/`            | Health check        |
+| GET    | `/courses`     | Get all courses     |
+| GET    | `/course/{id}` | Get course by ID    |
+| POST   | `/course`      | Create a new course |
+| PUT    | `/course/{id}` | Update a course     |
+| DELETE | `/course/{id}` | Delete a course     |
+
+---
+
+## 📦 Sample Request (Create)
+
+```json
+{
+  "coursename": "Golang",
+  "price": 299,
+  "author": {
+    "fullname": "Abhay",
+    "website": "example.com"
+  }
+}
+```
+
+---
+
+## 🧠 Notes
+
+* Uses in-memory storage (no external database)
+* Data resets on server restart
+* Intended for learning and prototyping
+
+---
+
+## 📈 Roadmap
+
+* Database integration (MongoDB/PostgreSQL)
+* Authentication (JWT)
+* Input validation & middleware
+* Production deployment
+
+---
+
+## 👨‍💻 Author
+
+Abhay Mishra
+https://github.com/AbhayMishra2722
