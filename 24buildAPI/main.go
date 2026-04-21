@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"math/rand"
 	"net/http"
 	"strconv"
@@ -34,6 +35,26 @@ func (c *Course) IsEmpty() bool {
 }
 
 func main() {
+
+	fmt.Println("API Tutorial")
+	r := mux.NewRouter()
+
+	//seeding
+	courses = append(courses, Course{CourseId: "2", CourseName: "React", CoursePrice: 299,
+		Author: &Author{Fullname: "Abhay", Website: "abhaymishra2722@learnn.in"}})
+	courses = append(courses, Course{CourseId: "3", CourseName: "Golang", CoursePrice: 000,
+		Author: &Author{Fullname: "AbhayM", Website: "VScode.in"}})
+
+	//routing
+	r.HandleFunc("/", serveHome).Methods("GET")
+	r.HandleFunc("/courses", getAllCourses).Methods("GET")
+	r.HandleFunc("/course/{id}", getOneCourese).Methods("GET")
+	r.HandleFunc("/course", createOneCourse).Methods("POST")
+	r.HandleFunc("/course/{id}", uppdateOneCourse).Methods("PUT")
+	r.HandleFunc("/course/{id}", deleteOneCourse).Methods("DELETE")
+
+	//listen to a port
+	log.Fatal(http.ListenAndServe(":4000", r))
 
 }
 
