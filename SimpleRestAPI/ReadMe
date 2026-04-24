@@ -1,0 +1,101 @@
+# Task Manager REST API (Go)
+
+A lightweight RESTful API implemented in Go using the standard library. This project demonstrates core backend concepts including HTTP routing, JSON serialization, and basic CRUD operations.
+
+---
+
+## Overview
+
+This service provides a simple in-memory task management system designed for learning and demonstration purposes. It emphasizes clarity, minimal dependencies, and idiomatic Go practices.
+
+---
+
+## Features
+
+* Create, retrieve, update (mark as completed), and delete tasks
+* Stateless HTTP API using `net/http`
+* JSON-based request and response handling
+
+---
+
+## Technology Stack
+
+* **Language:** Go (Golang)
+* **Libraries:** Standard library (`net/http`, `encoding/json`)
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+* Go 1.18 or higher
+
+### Installation & Run
+
+```bash
+git clone https://github.com/AbhayMishra2722/GO.git
+cd GO/SimpleRestAPI
+go run main.go
+```
+
+The server will start on:
+
+```
+http://localhost:8080
+```
+
+---
+
+## API Specification
+
+| Method | Endpoint     | Description              |
+| ------ | ------------ | ------------------------ |
+| GET    | /            | Service health check     |
+| GET    | /tasks       | Retrieve all tasks       |
+| POST   | /add         | Create a new task        |
+| GET    | /done/{id}   | Mark a task as completed |
+| GET    | /delete/{id} | Delete a task            |
+
+### Example Request
+
+**POST /add**
+
+```json
+{
+  "title": "Learn Go",
+  "done": false
+}
+```
+
+### Example Response
+
+```json
+[
+  {
+    "id": 1,
+    "title": "Learn Go",
+    "done": true
+  }
+]
+```
+
+---
+
+## Design Notes
+
+* Data is stored in-memory and resets on server restart
+* Endpoints follow simplified routing for educational purposes
+* Error handling is minimal and can be extended
+
+---
+
+## Future Enhancements
+
+* Persistent storage (PostgreSQL or MongoDB)
+* Migration to a structured router (e.g., Gin)
+* Input validation and structured error handling
+* Authentication and authorization (JWT-based)
+* RESTful route standardization
+
+---
